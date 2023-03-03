@@ -89,7 +89,7 @@ async def application(scope: Dict, receive: Callable, send: Callable) -> None:
         }
     )
 
-    db_settings = await get_db_settings()
+    db_settings = {} #await get_db_settings()
     payload = build_payload(scope, request, db_settings)
 
     await send(

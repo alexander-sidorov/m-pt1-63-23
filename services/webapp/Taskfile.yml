@@ -135,11 +135,11 @@ vars:
   DIR_VENV:
     sh: (cd "$(poetry env info --path)" && pwd) || echo '.venv'
   PIP_VERSION:
-    sh: cat "{{.ROOT_DIR}}/.pip-version"
+    sh: (cat "{{.ROOT_DIR}}/.pip-version" || echo '23.0.1')
   POETRY_VERSION:
-    sh: cat "{{.ROOT_DIR}}/.poetry-version"
+    sh: (cat "{{.ROOT_DIR}}/.poetry-version"  || echo '1.3.2' )
   PYTHON_VERSION:
-    sh: cat "{{.ROOT_DIR}}/.python-version"
+    sh: (cat "{{.ROOT_DIR}}/.python-version" || echo '3.10.10')
 
 
 env:

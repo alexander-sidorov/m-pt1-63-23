@@ -1,0 +1,23 @@
+[tool.poetry]
+authors = ["Alexander Sidorov <a375296648709@gmail.com>"]
+description = "M-PT1-63-23 - Docs"
+license = "MIT"
+name = "docs.m-pt1-63-23"
+version = "2023.03.01"
+
+
+[tool.poetry.dependencies]
+mkdocs-glightbox = "^0.3.1"
+mkdocs-material = "^9.1.0"
+python = "3.10.10"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+httpie = "^3.2.1"
+ipython = "^8.11.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

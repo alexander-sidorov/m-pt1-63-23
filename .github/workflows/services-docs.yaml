@@ -1,0 +1,61 @@
+name: Services - Docs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+
+env:
+  CACHE_CUSTOM_KEY: 0
+
+
+jobs:
+  deploy-docs:
+    name: 📦 Docs are deployed.
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Code is pulled from repo.
+        uses: actions/checkout@v3
+
+      - name: 🔑 Cache key is calculated.
+        id: cache-key
+        run: |
+          echo "value=cache-docs-toolchain-ubuntu-${{ hashFiles('services/docs/poetry.lock', 'services/docs/.poetry-version', 'services/docs/.python-version') }}-${{ env.CACHE_CUSTOM_KEY }}" >> $GITHUB_OUTPUT
+      - name: 📦 Toolchain is cached and restored.
+        id: cache-toolchain
+        uses: actions/cache@v3
+        with:
+          key: ${{ steps.cache-key.outputs.value }}
+          path: |
+            .local
+            services/docs/.local
+
+      - name: 🧩 Envs are set up.
+        run: |
+          echo "${GITHUB_WORKSPACE}/.github/bin" >> ${GITHUB_PATH}
+          echo "${GITHUB_WORKSPACE}/.local/pyenv/bin" >> ${GITHUB_PATH}
+          echo "PYENV_ROOT=${GITHUB_WORKSPACE}/.local/pyenv" >> ${GITHUB_ENV}
+
+      - name: 🐍 Pyenv is installed.
+        if: ${{ !steps.cache-toolchain.outputs.cache-hit }}
+        run: |
+          curl https://pyenv.run | bash
+          eval "$(pyenv init --path)"
+
+      - name: 🐍 Pyenv is rehashed.
+        run: |
+          echo "$(pyenv root)/shims" >> ${GITHUB_PATH}
+          pyenv rehash
+
+      - name: 🛠️ Developer toolchain is set.
+        run: |
+          task setup-toolchain
+          poetry env info
+        working-directory: services/docs/
+
+      - name: 📦 Documentation is deployed.
+        run: task deploy-github
+        working-directory: services/docs/

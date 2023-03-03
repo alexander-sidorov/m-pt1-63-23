@@ -1,0 +1,15 @@
+**/*.secrets.*
+**/.dockerignore
+**/.env
+**/.git/
+**/.gitattributes
+**/.github/
+**/.gitignore
+**/.idea/
+**/.local/
+**/.run/
+**/.venv/
+**/.vscode/
+**/__pycache__/
+**/tmp/
+**/TODO.md

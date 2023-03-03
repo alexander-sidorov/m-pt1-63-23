@@ -1,0 +1,14 @@
+**/*.bak
+**/*.log
+**/*.py[cod]
+**/*~
+**/.coverage
+**/.DS_Store
+**/.env
+**/.env/
+**/.idea/
+**/.secrets.*
+**/.venv/
+**/.vscode/
+**/__pycache__/
+**/venv/

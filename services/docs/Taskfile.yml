@@ -1,0 +1,50 @@
+version: '3'
+
+output: 'prefixed'
+
+tasks:
+
+  deploy-github:
+    cmds:
+      - poetry run mkdocs gh-deploy --force
+    desc: deploy docs to Github Pages
+    dir: "{{.ROOT_DIR}}"
+
+  run-server-dev:
+    cmds:
+      - poetry run mkdocs serve
+    desc: run local server with docs
+    dir: "{{.ROOT_DIR}}"
+
+  setup-toolchain:
+    cmds:
+      - pyenv install --skip-existing "{{.PYTHON_VERSION}}"
+      - pip install --upgrade "pip=={{.PIP_VERSION}}"
+      - pip install --ignore-installed "poetry=={{.POETRY_VERSION}}"
+      - poetry env use "{{.PYTHON_VERSION}}"
+      - poetry install --with dev
+      - echo "ROOT_DIR={{.ROOT_DIR}}"
+      - echo "USER_WORKING_DIR={{.USER_WORKING_DIR}}"
+      - echo "TASKFILE_DIR={{.TASKFILE_DIR}}"
+      - echo "DIR_LOCAL={{.DIR_LOCAL}}"
+      - echo "DIR_VENV={{.DIR_VENV}}"
+      - echo "PYTHON_VERSION={{.PYTHON_VERSION}}"
+      - echo "POETRY_VERSION={{.POETRY_VERSION}}"
+    desc: "setup developer's toolchain: Pyenv, Python, Poetry, venv"
+    dir: "{{.ROOT_DIR}}"
+
+vars:
+  DIR_LOCAL:
+    sh: (cd "{{.ROOT_DIR}}"/.local && pwd)
+  DIR_VENV:
+    sh: (cd "$(poetry env info --path)" && pwd) || echo '.venv'
+  PIP_VERSION:
+    sh: cat "{{.ROOT_DIR}}/.pip-version"
+  POETRY_VERSION:
+    sh: cat "{{.ROOT_DIR}}/.poetry-version"
+  PYTHON_VERSION:
+    sh: cat "{{.ROOT_DIR}}/.python-version"
+
+
+env:
+  PYTHONPATH: "{{.ROOT_DIR}}"

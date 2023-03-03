@@ -1,0 +1,17 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "M-PT1-63-23 DB",
+      "Group": "IT Academy",
+      "Host": "db",
+      "Port": 5432,
+      "MaintenanceDB": "postgres",
+      "Username": "m-pt1-63-23",
+      "KerberosAuthentication": false,
+      "ConnectionParameters": {
+        "sslmode": "prefer",
+        "passfile": "/pgadmin4/.pgpass"
+      }
+    }
+  }
+}

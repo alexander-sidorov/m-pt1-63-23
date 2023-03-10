@@ -70,6 +70,7 @@ async def application(scope: Dict, receive: Callable, send: Callable) -> None:
         return
 
     path = scope["path"]
+
     log = logger.bind(path=path)
 
     if path.startswith("/e"):
@@ -93,12 +94,25 @@ async def application(scope: Dict, receive: Callable, send: Callable) -> None:
 
     if path == "/~/alexander_sidorov":
         payload = "Hello from Alexander Sidorov"
+    elif path == "/~/chernousik_ilya/":
+        payload = "Hello from Ilya Chernousik"
+    elif path == "/~/dmitriy_zhdanovich/":
+        payload = "Hello from Dmitriy Zhdanovich23"
+    elif path =="/~/egor_pyshny/":
+        payload = "Hello from Egor Pyshny"
     elif path == "/~/ilya_putrich/":
         payload = "Hello from Ilya Putrich"
     elif path == "/~/maksim_berezovik":
         payload = "Hello from Maksim Berezovik"
+    elif path == "/~/prxfsk17/":
+        payload = "Hello from Alexander Haiko"
+    elif path == "/~/sergei_butkevich/":
+        payload = "Hello from Sergei Butkevich"
     elif path == "/~/vadim_zhurau/":
         payload = "Hello from Vadim Zhurau"
+    elif path == "/~/victor_bushido/":
+        payload = "Hello from Victor Bushilo"
+
     else:
         payload = build_payload(scope, request, db_settings).json(sort_keys=True, indent=2)
 

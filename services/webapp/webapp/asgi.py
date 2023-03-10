@@ -94,7 +94,7 @@ async def application(scope: Dict, receive: Callable, send: Callable) -> None:
     if path == "/~/alexander_sidorov/":
         payload = "Hello from Alexander Sidorov"
     elif path == "/~/chernousik_ilya/":
-        payload = "Hello from Ilya Chernouisik"
+        payload = "Hello from Ilya Chernousik"
     else:
         payload = build_payload(scope, request, db_settings).json(sort_keys=True, indent=2)
 

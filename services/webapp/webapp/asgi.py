@@ -96,12 +96,16 @@ async def application(scope: Dict, receive: Callable, send: Callable) -> None:
         payload = "Hello from Alexander Sidorov"
     elif path == "/~/chernousik_ilya/":
         payload = "Hello from Ilya Chernousik"
+    elif path == "/~/dmitriy_zhdanovich/":
+        payload = "Hello from Dmitriy Zhdanovich23"
     elif path == "/~/ilya_putrich/":
         payload = "Hello from Ilya Putrich"
     elif path == "/~/maksim_berezovik":
         payload = "Hello from Maksim Berezovik"
     elif path == "/~/prxfsk17/":
         payload = "Hello from Alexander Haiko"
+    elif path == "/~/sergei_butkevich/":
+        payload = "Hello from Sergei Butkevich"
     else:
         payload = build_payload(scope, request, db_settings).json(sort_keys=True, indent=2)
 

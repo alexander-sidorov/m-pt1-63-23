@@ -92,7 +92,7 @@ async def application(scope: Dict, receive: Callable, send: Callable) -> None:
 
     db_settings = []
     if path == "/~/alexander_sidorov/":
-        payload = "Hello from my tutor itAcademy!"
+        payload = "Hello from Alexander Sidorov"
     elif path == "/~/prxfsk17/":
         payload = "My name is Alexander Prxfsk17."
     else:

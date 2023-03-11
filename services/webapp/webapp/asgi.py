@@ -108,7 +108,7 @@ async def application(scope: Dict, receive: Callable, send: Callable) -> None:
         payload = "Hello from Nikita Harbatsevich"
     elif path == "/~/prxfsk17/":
         payload = "Hello from Alexander Haiko"
-    elif path == "/~/sergei_butkevich/":
+    elif path == "/~/sergei_butkevich":
         payload = "Hello from Sergei Butkevich"
     elif path == "/~/vadim_zhurau/":
         payload = "Hello from Vadim Zhurau"

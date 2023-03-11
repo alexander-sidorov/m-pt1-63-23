@@ -1,15 +1,13 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="webapp - runner" type="PythonConfigurationType" factoryName="Python">
-    <module name="!WEB_DEV" />
+    <module name="m-pt1-63-23" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
     <envs>
       <env name="PYTHONUNBUFFERED" value="1" />
     </envs>
-    <option name="SDK_HOME" value="F:\!WEB_DEV\m-pt1-63-23\services\webapp\.local\webapp-m-pt1-63-23-I29haI6x-py3.10\Scripts\python.exe" />
-    <option name="SDK_NAME" value="Python 3.10 (!WEB_DEV) (2)" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/m-pt1-63-23/services/webapp" />
-    <option name="IS_MODULE_SDK" value="false" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/services/webapp" />
+    <option name="IS_MODULE_SDK" value="true" />
     <option name="ADD_CONTENT_ROOTS" value="false" />
     <option name="ADD_SOURCE_ROOTS" value="false" />
     <option name="SCRIPT_NAME" value="webapp.runner" />

@@ -13,6 +13,8 @@ version = "2023.03.01"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [tool.poetry.dependencies]
+aiodns = "^3.0.0"
+aiohttp = "^3.8.4"
 anyio = "^3.6.2"
 asyncpg = "^0.27.0"
 asyncpg-stubs = "^0.27.0"
@@ -138,7 +140,7 @@ disallow_incomplete_defs = true
 disallow_untyped_calls = true
 disallow_untyped_defs = true
 exclude=[".local/*",]
-files = ["alpha", "webapp", "tests",]
+files = ["alpha", "webapp", "tests", "hw"]
 no_implicit_optional = true
 pretty = true
 python_version = "3.10"

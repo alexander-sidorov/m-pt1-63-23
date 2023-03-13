@@ -80,7 +80,7 @@ def views() -> Generator[Callable, None, None]:
         "prxfsk17",
         "sergei_butkevich",
         "vadim_zhurau",
-        "victor_bushido",
+        "victor_bushilo",
     }
 
     hw_path = dirs.DIR_APP / "hw"

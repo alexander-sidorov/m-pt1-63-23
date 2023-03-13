@@ -1,12 +1,15 @@
+import importlib
 from contextlib import asynccontextmanager
 from typing import AsyncIterator
 from typing import Callable
 from typing import Dict
+from typing import Generator
 from typing import List
 from typing import Optional
 
 import asyncpg
 
+from alpha import dirs
 from alpha.logging import logger
 from alpha.settings import Settings
 from webapp.custom_types import DbSetting
@@ -65,6 +68,39 @@ async def get_db_settings() -> List[DbSetting]:
     return db_settings
 
 
+def views() -> Generator[Callable, None, None]:
+    names = {
+        "alexander_sidorov",
+        "chernousik_ilya",
+        "dmitriy_zhdanovich",
+        "egor_pyshny",
+        "ilya_putrich",
+        "maksim_berezovik",
+        "nikita_harbatsevich",
+        "prxfsk17",
+        "sergei_butkevich",
+        "vadim_zhurau",
+        "victor_bushilo",
+    }
+
+    hw_path = dirs.DIR_APP / "hw"
+
+    for pkg_dir in hw_path.glob("*"):
+        if pkg_dir.name not in names:
+            continue
+        if not pkg_dir.is_dir():
+            continue
+        if not (pkg_dir / "__init__.py").is_file():
+            continue
+        if not (pkg_dir / "lesson03.py").is_file():
+            continue
+        lesson03 = importlib.import_module(f"hw.{pkg_dir.name}.lesson03")
+        if not hasattr(lesson03, "view"):
+            continue
+
+        yield lesson03.view
+
+
 async def application(scope: Dict, receive: Callable, send: Callable) -> None:
     if scope["type"] == "lifespan":  # pragma: no cover
         return
@@ -90,33 +126,13 @@ async def application(scope: Dict, receive: Callable, send: Callable) -> None:
         }
     )
 
-    db_settings = []
-
-    if path == "/~/alexander_sidorov":
-        payload = "Hello from Alexander Sidorov"
-    elif path == "/~/chernousik_ilya/":
-        payload = "Hello from Ilya Chernousik"
-    elif path == "/~/dmitriy_zhdanovich/":
-        payload = "Hello from Dmitriy Zhdanovich23"
-    elif path =="/~/egor_pyshny/":
-        payload = "Hello from Egor Pyshny"
-    elif path == "/~/ilya_putrich/":
-        payload = "Hello from Ilya Putrich"
-    elif path == "/~/maksim_berezovik":
-        payload = "Hello from Maksim Berezovik"
-    elif path == "/~/nikita_harbatsevich/":
-        payload = "Hello from Nikita Harbatsevich"
-    elif path == "/~/prxfsk17/":
-        payload = "Hello from Alexander Haiko"
-    elif path == "/~/sergei_butkevich":
-        payload = "Hello from Sergei Butkevich"
-    elif path == "/~/vadim_zhurau/":
-        payload = "Hello from Vadim Zhurau"
-    elif path == "/~/victor_bushido/":
-        payload = "Hello from Victor Bushilo"
-
+    for view in views():
+        payload = view(path)
+        if payload is not None:
+            break
     else:
-        payload = build_payload(scope, request, db_settings).json(sort_keys=True, indent=2)
+        payload_obj = build_payload(scope, request, [])
+        payload = payload_obj.json(sort_keys=True, indent=2)
 
     await send(
         {

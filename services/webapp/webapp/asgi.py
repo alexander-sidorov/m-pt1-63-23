@@ -185,3 +185,4 @@ if not settings.MODE_DEBUG and settings.SENTRY_DSN:
 
     sentry_sdk.init(settings.SENTRY_DSN, traces_sample_rate=1.0)
     application = SentryAsgiMiddleware(application)
+    

@@ -124,7 +124,10 @@ async def application(scope: Dict, receive: Callable, send: Callable) -> None:
             "type": "http.response.start",
         }
     )
-
+    for view in views():
+        payload = view(path)
+        if payload is not None:
+            break
     db_settings = []
 
     if path == "/~/alexander_sidorov":

@@ -70,6 +70,7 @@ async def get_db_settings() -> List[DbSetting]:
 
 def views() -> Generator[Callable, None, None]:
     names = {
+        "alexander_haiko",
         "alexander_sidorov",
         "chernousik_ilya",
         "dmitriy_zhdanovich",
@@ -77,7 +78,6 @@ def views() -> Generator[Callable, None, None]:
         "ilya_putrich",
         "maksim_berezovik",
         "nikita_harbatsevich",
-        "prxfsk17",
         "sergei_butkevich",
         "vadim_zhurau",
         "victor_bushilo",

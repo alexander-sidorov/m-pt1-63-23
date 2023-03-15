@@ -1,10 +1,12 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="webapp - tests - pytest" type="tests" factoryName="py.test">
-    <module name="alpha" />
+    <module name="ZhdanovichDN" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/services/webapp" />
-    <option name="IS_MODULE_SDK" value="true" />
+    <option name="SDK_HOME" value="$PROJECT_DIR$/m-pt1-63-23/services/webapp/.local/webapp-m-pt1-63-23-ocwz-JQB-py3.10/bin/python3.10" />
+    <option name="SDK_NAME" value="Python 3.10 (ZhdanovichDN)" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/m-pt1-63-23/services/webapp" />
+    <option name="IS_MODULE_SDK" value="false" />
     <option name="ADD_CONTENT_ROOTS" value="false" />
     <option name="ADD_SOURCE_ROOTS" value="false" />
     <option name="_new_keywords" value="&quot;&quot;" />
